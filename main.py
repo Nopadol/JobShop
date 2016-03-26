@@ -28,5 +28,3 @@ print "Table : "+str(Jobs)+" X "+str(Machines)
 #Value of Mutation = 0.05
 #Value of Crossover = 0.2
 ######################################
-
-    

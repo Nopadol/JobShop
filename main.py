@@ -4,11 +4,13 @@ from Tkinter import Tk
 from tkFileDialog import askopenfilename
 List =[]
 Chromosome = []
+Chromosome_map = []
 ret = []
 crossover_rate = 0.2 #define crossover rate
 mutation = 0.05 #define mutation rate
-
-
+iteration = 50
+machine_table = []
+operation_table = []
 
 #####################################################################
 #Input Files to List !!
@@ -79,33 +81,56 @@ defineMinFitness(Chromosome,List,Machines,Jobs)
 
 
 def mappingChromosomeRet(Chromosome,ret):
-    
     for i in range(0,len(Chromosome)-1):
         a = 0
         b = 0
         c = 0
         d = 0
         e = 0
+        Chromosome_map.append([]);
         print "Case : ",
         for j in range(0,len(Chromosome[i])-1):
             bufferInt = Chromosome[i][j]
             if(bufferInt == 1):
+                Chromosome_map[i].append(ret[a][bufferInt])
                 print ret[a][bufferInt],
                 a+=1
-            if(Chromosome[i][j] == 2):
+            if(bufferInt == 2):
+                Chromosome_map[i].append(ret[b][bufferInt])
                 print ret[b][bufferInt],
                 b+=1
-            if(Chromosome[i][j] == 3):
+            if(bufferInt == 3):
+                Chromosome_map[i].append(ret[c][bufferInt])
                 print ret[c][bufferInt],
                 c+=1
-            if(Chromosome[i][j] == 4):
+            if(bufferInt == 4):
+                Chromosome_map[i].append(ret[d][bufferInt])
                 print ret[d][bufferInt],
                 d+=1
-            if(Chromosome[i][j] == 5):
+            if(bufferInt == 5):
+                Chromosome_map[i].append(ret[e][bufferInt])
                 print ret[e][bufferInt],
                 e+=1
         print ""
 
 mappingChromosomeRet(Chromosome,ret)
     
+
+def createInputTable(List):
+    for i in range(0,len(List)):
+        bufferList = []
+        print "Case" + str(i),
+        for j in range(0,len(List[i])):
+            bufferList.append(List[j][i])
+            print List[j][i],
+        if(i%2 == 0):
+            machine_table.append(bufferList)
+        else:
+            operation_table.append(bufferList)
+        print ""
+
+createInputTable(List)
+
+
+def calculateJobshop(Chromosome,Chromosome_map):
     
